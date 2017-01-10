@@ -17,7 +17,7 @@ class Downloader
 		$this->config = require dirname(__DIR__).'/config/config.php';
 		$fh = new FileHandler();
 		$this->download_path = $fh->get_downloads_folder();
-		
+
 		if($this->config["log"])
 		{
 			$this->log_path = $fh->get_logs_folder();
@@ -38,7 +38,7 @@ class Downloader
 		{
 			$this->vformat = $vformat;
 		}
-			
+
 
 		foreach ($this->urls as $url)
 		{
@@ -197,7 +197,7 @@ class Downloader
 				$this->errors[] = "Output folder isn't writable! (".$this->download_path.")";
 			}
 		}
-		
+
 		// LOG folder
 		if($this->config["log"])
 		{
@@ -218,7 +218,7 @@ class Downloader
 				}
 			}
 		}
-		
+
 	}
 
 	private function do_download()
@@ -226,7 +226,7 @@ class Downloader
 		$cmd = "youtube-dl";
 		$cmd .= " -o ".$this->download_path."/";
 		$cmd .= escapeshellarg($this->outfilename);
-		
+
 		if ($this->vformat) 
 		{
 			$cmd .= " --format ";
@@ -234,7 +234,7 @@ class Downloader
 		}
 		if($this->audio_only)
 		{
-			$cmd .= " -x ";
+			$cmd .= " -x  --audio-format mp3 ";
 		}
 
 		foreach($this->urls as $url)
