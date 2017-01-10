@@ -231,7 +231,11 @@ class Downloader
 		{
 			$cmd .= " --format ";
 			$cmd .= escapeshellarg($this->vformat);
+		} else {
+			// default to mp4 if not audio out choosen
+			if(!$this->audio_only) $cmd .= "--recode-video mp4 ";
 		}
+
 		if($this->audio_only)
 		{
 			$cmd .= " -x  --audio-format mp3 ";
